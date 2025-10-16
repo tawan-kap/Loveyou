@@ -8,9 +8,11 @@ const loveMessages = [
     "รักของเราจะยิ่งใหญ่ตลอดไป! 🎉"
 ];
 const images = [
-    'https://i.ibb.co/xyz1.jpg', // แทนที่ด้วย URL จาก ImgBB
-    'https://i.ibb.co/xyz2.jpg',
-    'https://i.ibb.co/xyz3.jpg'
+    'https://ibb.co/YBXtyxgc', // แทนที่ด้วย URL จาก ImgBB
+    'https://ibb.co/dsyVR9wz',
+    'https://ibb.co/dwRRxYxK',
+    'https://ibb.co/Cy79Gt6',
+    'https://ibb.co/mFShL8CD'
 ];
 let currentImageIndex = 0;
 let currentTheme = 0;
@@ -21,8 +23,8 @@ const themes = [
 ];
 
 // ระบบล็อกอินคู่รัก
-const correctUsername = 'love'; // เปลี่ยนได้
-const correctPassword = 'forever'; // เปลี่ยนได้
+const correctUsername = 'neme'; // เปลี่ยนได้
+const correctPassword = 'tawan'; // เปลี่ยนได้
 
 function login() {
     const username = document.getElementById('username').value;
