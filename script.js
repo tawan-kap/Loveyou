@@ -23,7 +23,7 @@ const themes = [
 ];
 
 // ระบบล็อกอินคู่รัก
-const correctUsername = 'neme'; // เปลี่ยนได้
+const correctUsername = 'name'; // เปลี่ยนได้
 const correctPassword = 'tawan'; // เปลี่ยนได้
 
 function login() {
