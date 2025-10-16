@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💞 ความรักของเรา 💍</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div id="three-canvas"></div>
+    <div id="login-form" class="login-form">
+        <h2>💖 ล็อกอินคู่รักของเรา 💍</h2>
+        <input type="text" id="username" placeholder="ชื่อคู่รัก (เช่น love)">
+        <input type="password" id="password" placeholder="รหัสลับ (เช่น forever)">
+        <button onclick="login()">เข้าสู่โลกความรัก 💕</button>
+        <p id="login-error" style="color: red; display: none;">ชื่อหรือรหัสผิดน้า! ลองอีกที 💔</p>
+    </div>
+    <div id="main-content" class="container" style="display: none;">
+        <h1>💞💍 เราอยู่ด้วยกันมากี่วันแล้ว 💍💞</h1>
+        <p class="highlight" id="anniversary-text"></p>
+        <p id="countdown-text">นับถอยหลังสู่ครบรอบถัดไป: <span id="countdown"></span> ⏳</p>
+        <div class="button-group">
+            <button onclick="showDetails()">ดูรายละเอียดยิบ 🌟</button>
+            <button onclick="triggerConfetti()">ฉลองความรัก! 🎉</button>
+            <button onclick="playLoveSong()">เล่นเพลงรัก 💕</button>
+            <button onclick="randomLoveMessage()">ข้อความรักสุ่ม 💌</button>
+            <button onclick="toggleGallery()">แกลเลอรีรูปคู่รัก 📸</button>
+            <button onclick="toggleTheme()">เปลี่ยนธีมสี 🎨</button>
+            <button onclick="addLoveMessage()">เพิ่มข้อความรัก 💬</button>
+            <button onclick="shareLove()">แชร์ความรัก 🌐</button>
+            <button onclick="triggerEasterEgg()">??? 😘</button>
+            <button onclick="startLoveGame()">เล่นเกมรักเล็กๆ 🎮</button>
+            <button onclick="generateAILoveMessage()">AI สร้างข้อความรักฟรี 🤖💖</button>
+        </div>
+        <div id="love-message" class="love-message"></div>
+        <div id="custom-message-form" class="custom-message-form" style="display: none;">
+            <input type="text" id="new-message" placeholder="พิมพ์ข้อความรักของเรา... 💕">
+            <button onclick="saveLoveMessage()">บันทึก 💾</button>
+        </div>
+        <div id="details" class="details"></div>
+        <div id="gallery" class="gallery">
+            <h2>📸 ความทรงจำของเรา 💕</h2>
+            <div class="gallery-images" id="gallery-images"></div>
+            <button onclick="prevImage()">⬅️</button>
+            <button onclick="nextImage()">➡️</button>
+        </div>
+        <div id="memories" class="memories">
+            <h2>💌 ความทรงจำรักของเรา 💌</h2>
+            <div id="memory-list"></div>
+        </div>
+        <div id="love-game" class="love-game" style="display: none;">
+            <h2>🎮 เกมรัก: คลิกหัวใจให้เยอะสุดใน 30 วินาที! 💖</h2>
+            <p>คะแนนปัจจุบัน: <span id="game-score">0</span></p>
+            <p>เวลาเหลือ: <span id="game-timer">30</span> วินาที</p>
+            <button id="heart-button" onclick="clickHeart()">❤️ คลิกหัวใจ!</button>
+            <p>คะแนนสูงสุด: <span id="high-score">0</span></p>
+            <button onclick="resetGame()">เล่นใหม่ 🎲</button>
+        </div>
+        <p class="footer">เริ่มนับจาก 25 April 2025 (UTC+07:00) 🌸 | © by tawan_x2</p>
+    </div>
+    <audio id="love-song" src="love-song.mp3"></audio>
+    <select id="song-selector" onchange="changeSong()">
+        <option value="love-song.mp3">เพลงรัก 1 💕</option>
+        <option value="love-song2.mp3">เพลงรัก 2 💖</option>
+        <option value="love-song3.mp3">เพลงรัก 3 ✨</option>
+    </select>
+    <script src="script.js"></script>
+</body>
+</html>
