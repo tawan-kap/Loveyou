@@ -8,7 +8,7 @@ const loveMessages = [
     "รักของเราจะยิ่งใหญ่ตลอดไป! 🎉"
 ];
 const images = [
-    'https://ibb.co/YBXtyxgc', // แทนที่ด้วย URL จาก ImgBB
+    'https://ibb.co/YBXtyxgc',
     'https://ibb.co/dsyVR9wz',
     'https://ibb.co/dwRRxYxK',
     'https://ibb.co/Cy79Gt6',
@@ -23,8 +23,8 @@ const themes = [
 ];
 
 // ระบบล็อกอินคู่รัก
-const correctUsername = 'name'; // เปลี่ยนได้
-const correctPassword = 'tawan'; // เปลี่ยนได้
+const correctUsername = 'name';
+const correctPassword = 'tawan';
 
 function login() {
     const username = document.getElementById('username').value;
@@ -47,15 +47,38 @@ if (localStorage.getItem('loggedIn') === 'true') {
 
 // คำนวณระยะเวลาครบรอบและอัปเดต DOM
 function calculateTimePassed() {
-    const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Bangkok' }));
+    const now = new Date();
     const diffMs = now - startDate;
+
+    if (diffMs < 0) {
+        // กรณีวันที่เริ่มต้นอยู่ในอนาคต
+        document.getElementById('anniversary-text').innerHTML = 
+            'ความรักของเรายังไม่เริ่ม! รอถึง 25 เม.ย. 2025 น้า 💕';
+        document.getElementById('countdown').innerText = '';
+        document.getElementById('details').innerHTML = '';
+        return;
+    }
+
+    // คำนวณวัน, ชั่วโมง, นาที, วินาที
     const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
     const hours = Math.floor(diffMs / (1000 * 60 * 60));
     const minutes = Math.floor(diffMs / (1000 * 60));
     const seconds = Math.floor(diffMs / 1000);
-    const years = Math.floor(days / 365);
-    const months = Math.floor((days % 365) / 30);
-    const remainingDays = days % 30;
+
+    // คำนวณปี, เดือน, วันตามวันที่ 25
+    let years = now.getFullYear() - startDate.getFullYear();
+    let months = now.getMonth() - startDate.getMonth();
+    let remainingDays = now.getDate() - startDate.getDate();
+
+    if (remainingDays < 0) {
+        months--;
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        remainingDays += prevMonth.getDate();
+    }
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
 
     // อัปเดตข้อความครบรอบ
     document.getElementById('anniversary-text').innerHTML = 
@@ -64,18 +87,31 @@ function calculateTimePassed() {
     // อัปเดต <div id="details">
     updateDetails(days, hours, minutes, seconds);
 
-    // นับถอยหลังครบรอบถัดไป
-    const nextMonth = new Date(startDate);
-    nextMonth.setMonth(startDate.getMonth() + months + 1);
-    const countdownMs = nextMonth - now;
+    // นับถอยหลังไปยังครบรอบถัดไป (วันที่ 25)
+    const nextAnniversary = new Date(now.getFullYear(), now.getMonth(), 25);
+    if (now.getDate() >= 25) {
+        nextAnniversary.setMonth(now.getMonth() + 1);
+    }
+    if (nextAnniversary.getMonth() === 12) {
+        nextAnniversary.setFullYear(nextAnniversary.getFullYear() + 1);
+        nextAnniversary.setMonth(0);
+    }
+    const countdownMs = nextAnniversary - now;
     const countdownDays = Math.floor(countdownMs / (1000 * 60 * 60 * 24));
     const countdownHours = Math.floor((countdownMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const countdownMinutes = Math.floor((countdownMs % (1000 * 60 * 60)) / (1000 * 60));
+
+    // แสดงวันที่ครบรอบถัดไป
+    const nextDateStr = nextAnniversary.toLocaleDateString('th-TH', { 
+        day: '2-digit', 
+        month: 'long', 
+        year: 'numeric' 
+    });
     document.getElementById('countdown').innerText = 
-        `${countdownDays} วัน ${countdownHours} ชั่วโมง ${countdownMinutes} นาที`;
+        `${countdownDays} วัน ${countdownHours} ชั่วโมง ${countdownMinutes} นาที (ถึง ${nextDateStr})`;
 }
 
-// สร้างและอัปเดต <div id="details"> จากตัวแปร
+// อัปเดต <div id="details">
 function updateDetails(days, hours, minutes, seconds) {
     const details = document.getElementById('details');
     details.innerHTML = `
