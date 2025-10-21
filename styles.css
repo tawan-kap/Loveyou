@@ -29,7 +29,16 @@ h1 {
     font-size: 1.6em;
     color: #d81b60;
     margin: 15px 0;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     animation: fadeIn 2s ease-in-out;
+}
+
+#countdown {
+    font-weight: bold;
+    color: #ff4d4d;
 }
 
 .button-group {
@@ -173,6 +182,28 @@ button:hover {
     border-radius: 10px;
     background: #ff6f91;
     color: white;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+    .highlight, #countdown-text {
+        font-size: 1.2em;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+    .gallery-images img {
+        width: 150px;
+        height: 150px;
+    }
+    .login-form {
+        width: 90%;
+        padding: 20px;
+    }
 }
 
 /* Animations */
