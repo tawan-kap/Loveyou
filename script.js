@@ -45,6 +45,15 @@ if (localStorage.getItem('loggedIn') === 'true') {
     document.getElementById('main-content').style.display = 'block';
 }
 
+function logout() {
+    localStorage.removeItem('loggedIn');
+    document.getElementById('login-form').style.display = 'block';
+    document.getElementById('main-content').style.display = 'none';
+    document.getElementById('username').value = '';
+    document.getElementById('password').value = '';
+    document.getElementById('login-error').style.display = 'none';
+}
+
 // คำนวณระยะเวลาครบรอบและอัปเดต DOM
 function calculateTimePassed() {
     const now = new Date();
